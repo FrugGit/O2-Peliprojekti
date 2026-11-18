@@ -15,3 +15,5 @@ const myGameArea = {
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
   }
 };
+
+startGame()
