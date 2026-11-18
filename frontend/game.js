@@ -1,17 +1,22 @@
+const canvas = document.getElementById("game-canvas");
+const context = canvas.getContext("2d");
 
+// Pelin sisäinen resoluutio:
+const GAME_WIDTH = 800;
+const GAME_HEIGHT = 600;
+canvas.width = GAME_WIDTH;
+canvas.height = GAME_HEIGHT;
 
-// Pelin "kanvaasi", alue johon se rajataan
-// Koko on muutettavissa vielä
+// Peli-ikkunan skaalautuvuuden funktio:
+function resizeGameWindow() {
+  const scaleX = window.innerWidth / GAME_WIDTH;
+  const scaleY = window.innerHeight / GAME_HEIGHT;
+  const scale = Math.min(scaleX, scaleY, 1); // Remove ", 1" to allow upscaling
 
-function startGame() {
-    myGameArea.start();
+  canvas.style.width = `${GAME_WIDTH * scale}px`;
+  canvas.style.height = `${GAME_HEIGHT * scale}px`;
 }
-const myGameArea = {
-  canvas : document.createElement("canvas"),
-  start : function() {
-    this.canvas.width = 800;
-    this.canvas.height = 600;
-    this.context = this.canvas.getContext("2d");
-    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-  }
-};
+
+// Tällä ylempi resize ajetaan aina sivun avautuessa ja kun selainikkunan kokoa muutetaan
+window.addEventListener("resize", resizeGameWindow);
+resizeGameWindow();
