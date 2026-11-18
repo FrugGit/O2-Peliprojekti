@@ -33,6 +33,9 @@ def get_scores():
 def add_score():
     data = request.get_json()
 
+    if not data or "name" not in data or "score" not in data:
+        return jsonify({"error": "Name and score are required"}), 400
+
     name = data.get("name")
     score = data.get("score")
 
