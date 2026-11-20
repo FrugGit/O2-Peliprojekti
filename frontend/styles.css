@@ -4,5 +4,6 @@
 }
 
 #game-canvas {
-    display: block;
+    display: flexbox;
+    
 }
