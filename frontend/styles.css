@@ -4,10 +4,11 @@
 }
 
 #game-canvas {
-    display: flexbox;
+    display: flex;
     
 }
-/* Sivunavigaatio */
+
+/* Navigatio keskellä */
 #s-nav {
   position: fixed;
   top: 0;
@@ -17,15 +18,13 @@
   background-color: lightpink;
   transition: 0.3s;
   z-index: 1000;
-}
-/* Navigatio keskellä */
-#s-nav nav {
-  height: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 /* Sen napit */
 #s-nav a {
   background-color:pink;
@@ -60,4 +59,75 @@
 }
 #arrow.open {
   left: 205px;
+}
+/* Sivun yleinen asettelu */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff5f8;
+}
+
+/* Pääsisältö */
+.main-content {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+/* Pelin logo */
+header {
+  width: 100%;
+  min-height: 120px;
+  background-color: lightpink;
+  border: 2px solid #7a5353;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Etusivun sisältö */
+.home-content {
+  margin-top: 30px;
+  padding: 30px;
+  background-color: white;
+  border: 2px solid #7a5353;
+  border-radius: 5px;
+}
+
+/* Otsikot */
+h1, h2, h3 {
+  color: #7a5353;
+}
+
+/* Aloita peli -linkki */
+.home-content a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: pink;
+  color: white;
+  text-decoration: none;
+  border: 2px solid #7a5353;
+  border-radius: 5px;
+}
+
+/* Responsiivisuus */
+@media (max-width: 600px) {
+  .main-content {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .home-content {
+    padding: 15px;
+  }
+
+  header {
+    min-height: 90px;
+  }
 }
