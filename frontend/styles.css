@@ -1,18 +1,42 @@
+/* Pelin tyylit */
 #game-container {
   border: 2px solid #7a5353;
   line-height: 0;
+  padding: 10px 24px;
+
+  border-radius: 6px;
+  background-color: #7a5353;
+  box-shadow: 0 4px 0 #573939;
 }
 
-#game-canvas {
-    display: flex;
-    
+#grid {
+  display: flex;
+  width: 500px;
+  height: 500px;
+  border: solid black 2px;
+}
+
+#scoreboard {
+  position: absolute;
+  font-family: monospace;
+  font-size: 20px;
+  color: black;
+  background-color: transparent;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
+  padding: 10px;
+  pointer-events: none;
+}
+
+#game-player {
+  width: 10px;
+  height: 10px;
 }
 
 /* Navigatio keskellä */
 #s-nav {
   position: fixed;
   top: 0;
-  left: -200px;
+  left: 0px;
   width: 200px;
   height: 100%;
   background-color: lightpink;
@@ -27,8 +51,8 @@
 
 /* Sen napit */
 #s-nav a {
-  background-color:pink;
-  color:white;
+  background-color: pink;
+  color: white;
   padding: 15px;
   margin: 10px;
   width: 130px;
@@ -36,7 +60,7 @@
   text-decoration: none;
   border: 2px solid #7a5353;
   border-radius: 5px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 /* Nuoli */
 #arrow {
@@ -60,6 +84,7 @@
 #arrow.open {
   left: 205px;
 }
+
 /* Sivun yleinen asettelu */
 body {
   margin: 0;
@@ -74,6 +99,7 @@ body {
   margin: 0 auto;
   padding: 30px 20px;
   box-sizing: border-box;
+  margin-left: 200px;
 }
 
 /* Pelin logo */
@@ -81,13 +107,36 @@ header {
   width: 100%;
   min-height: 120px;
   background-color: lightpink;
-  border: 2px solid #7a5353;
-  border-radius: 5px;
-
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  margin-left: 200px;
+}
+
+#header-logo {
+  font-family: monospace, sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 10px 24px;
+  border: 2px solid #7a5353;
+  border-radius: 6px;
+  background-color: #7a5353;
+  box-shadow: 0 4px 0 #573939;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
+  user-select: none;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 200px;
+  width: calc(100% - 200px);
 }
 
 /* Etusivun sisältö */
@@ -100,7 +149,9 @@ header {
 }
 
 /* Otsikot */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: #7a5353;
 }
 
