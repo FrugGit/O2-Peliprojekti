@@ -3,9 +3,8 @@
   line-height: 0;
 }
 
-#game-canvas {
-    display: flex;
-    
+.grid {
+  display: flex;
 }
 
 /* Navigatio keskellä */
@@ -27,8 +26,8 @@
 
 /* Sen napit */
 #s-nav a {
-  background-color:pink;
-  color:white;
+  background-color: pink;
+  color: white;
   padding: 15px;
   margin: 10px;
   width: 130px;
@@ -36,7 +35,7 @@
   text-decoration: none;
   border: 2px solid #7a5353;
   border-radius: 5px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 /* Nuoli */
 #arrow {
@@ -100,7 +99,9 @@ header {
 }
 
 /* Otsikot */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: #7a5353;
 }
 
