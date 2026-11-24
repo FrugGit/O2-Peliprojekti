@@ -73,7 +73,7 @@ function shoot() {
 
     function moveShooter() {
         squares[currentShotPosition].classList.remove("bullet")
-        currentShotPosition -= width
+        currentShotPosition -= 
 
         if (currentShotPosition < 0) {
             clearInterval(gunShot)
