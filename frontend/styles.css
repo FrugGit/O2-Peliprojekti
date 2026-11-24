@@ -7,8 +7,10 @@
 
 #grid {
   display: flex;
-  width: 500px;
-  height: 500px;
+  flex-wrap: wrap;
+  background-color: khaki;
+  width: 800px;
+  height: 600px;
   border: solid black 2px;
 }
 
@@ -23,29 +25,16 @@
   pointer-events: none;
 }
 
-#game-player {
-  width: 10px;
-  height: 10px;
-}
-
-grid {
-  width: 800px;
-  height: 600px;
-  background-color: khaki;
-  display: flex;
-	flex-wrap: wrap;
-}
-
 /* peliin liittyen, yhden gridin palikan koko: */
 .grid div {
-	width: 40px;
-	height: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 /* pelaaja: */
 
 .shooter {
-	background-color:darkgreen ;
+  background-color: darkgreen;
 }
 
 /* datakeskus:*/
@@ -83,6 +72,7 @@ grid {
   border-radius: 5px;
   box-sizing: border-box;
 }
+
 /* Nuoli */
 #arrow {
   position: fixed;
