@@ -6,26 +6,76 @@
     <title>Contact - Game Project</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <header>
-      <div id="header-logo">Logo</div>
-    </header>
+
+    <!-- Navigointivalikko -->
     <nav id="s-nav">
       <a href="index.html">Homepage</a>
       <a href="gamepage.html">Game</a>
       <a href="contactpage.html">Contact</a>
     </nav>
-    <button id="arrow" onclick="openNav()"></button>
 
-    <main>
-      <div id="main-content">
-        <h1>Contact</h1>
-        <p>Contact the team if you have questions or feedback on the game!</p>
-        <ul>
-          <li>Email: example@example.fi</li>
-          <li>Phone: 000000000</li>
-        </ul>
-      </div>
+    <!-- Valikon avauspainike -->
+    <button id="arrow" type="button" onclick="openNav()">☰</button>
+
+    <!-- Sivun pääsisältö -->
+    <main class="main-content">
+
+      <!-- Pelin logo -->
+      <header>
+        <h1>Nimi</h1>
+      </header>
+
+      <!-- Yhteystiedot -->
+      <section class="contact-content">
+
+        <h2>Contact</h2>
+
+        <div class="contact-container">
+
+          <!-- Paikka ryhmäkuvalle -->
+          <div class="contact-image">
+            <p>Team photo</p>
+          </div>
+
+          <!-- Ryhmän tiedot -->
+          <div class="contact-info">
+
+            <h3>About our team</h3>
+
+            <p>
+              We are ICT engineering students
+              at Metropolia University of Applied Sciences.
+            </p>
+
+            <h3>Contact us</h3>
+
+            <p>
+              Contact the team if you have questions
+              or feedback on the game!
+            </p>
+
+            <p>Email: example@example.fi</p>
+
+            <h3>Development team</h3>
+
+            <ul>
+              <li>Team member 1</li>
+              <li>Team member 2</li>
+              <li>Team member 3</li>
+              <li>Team member 4</li>
+            </ul>
+
+          </div>
+
+        </div>
+
+      </section>
+
     </main>
+
+    <script src="navigation.js"></script>
+
   </body>
 </html>
