@@ -37,11 +37,17 @@ def add_score():
         return jsonify({"error": "Name and score are required"}), 400
 
     name = data.get("name")
+    if not isinstance(name, str) or not name.strip():
+        return jsonify({"error": "Name cannot be empty"}), 400
     score = data.get("score")
+    if not isinstance(score, int) or score < 0:
+        return jsonify({"error": "Score must be a non-negative integer"}), 400
 
     scores = load_scores()
 
     scores.append({"name": name, "score": score})
+
+    scores.sort(key=lambda x: x["score"], reverse=True)
 
     with open(SCORES_FILE, "w") as file:
         json.dump(scores, file, indent=4)
