@@ -3,9 +3,9 @@ const gridHeight = 15
 const removedDataCenters = []
 let gameOver = false
 let dataCenterSpeed = 1.6
-let currentShooterPosition = 280
+let currentPlayerPosition = 280
 
-const createGridOn = (parentID, width, height) => {
+const createGridOn = (parentID) => {
   const parentElement = document.getElementById(parentID);
   console.log(parentElement);
   const grid = document.createElement("div");
@@ -16,19 +16,19 @@ const createGridOn = (parentID, width, height) => {
   return grid;
 };
 
-const grid = createGridOn("game-container", 800, 600);
+const grid = createGridOn("game-container");
 
+//luo gridin sisään gridin palikat
 for (let i = 0; i < gridWidth * gridHeight; i++) {
     const square = document.createElement("div")
     grid.appendChild(square)
 }
 
-
 const squares = Array.from(document.querySelectorAll(".grid div"))
 
 const dataCenters = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-    15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27
+    15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29
 ]
 
 function draw() {
@@ -41,6 +41,7 @@ function draw() {
 
 draw()
 
+// poistaa datacenterin omasta ruudustaan jotta se voi joko siirtyä seuraavaan tai pois pelistä
 function remove() {
     for (let i = 0; i < dataCenters.length; i++) {
         squares[dataCenters[i]].classList.remove("datacenter")
@@ -48,30 +49,54 @@ function remove() {
 }
 
 const movePlayer = () => {
-  // nuolinäppäinten painallusten eventit
-    squares[currentShooterPosition].classList.remove("shooter")
-  const move = (event) => {
-    if (event.code === "ArrowLeft") {
-      if (currentShooterIndex % width !== 0) currentShooterIndex -= 1
-      return "left";
+  // nuolinäppäinten painallusten eventit täällä
+    squares[currentPlayerPosition].classList.remove("shooter")
+    switch (e.key) {
+        case "ArrowLeft":
+            if (currentPlayerPosition % width !== 0) currentPlayerPosition -= 1
+            break
+        case "ArrowRight":
+            if (currentPlayerPosition % width < width - 1) currentPlayerPosition += 1
+            break
     }
-    if (event.code === "ArrowRight") {
-      console.log("going right");
-      return "right";
-    }
-  };
-  // placeholder pelaajalle, sille pitää vielä tehdä oma "fyysinen" olemus
-  const player = document.createElement("div");
-  player.id = "game-player";
-  document.addEventListener("keydown", move);
-  return player;
+    squares[currentPlayerPosition].classList.add("shooter")
+
 };
 
-// game loop täällä
-const play = () => {
-  // pelataan pelii
-  const player = createPlayer();
-  grid.appendChild(player);
-};
+//kuinka usein ammus lähtee pelaajasta:
+setInterval(shoot, 500)
 
-play();
+//ampumisen funktio
+function shoot() {
+    let gunShot
+    let currentShotPosition = currentPlayerPosition
+
+    function moveShooter() {
+        squares[currentShotPosition].classList.remove("bullet")
+        currentShotPosition -= width
+
+        if (currentShotPosition < 0) {
+            clearInterval(gunShot)
+            return
+        }
+
+        squares[currentShotPosition].classList.add("bullet")
+
+        if (squares[currentShotPosition].classList.contains("invader")) {
+            squares[currentShotPosition].classList.remove("bullet")
+            squares[currentShotPosition].classList.remove("invader")
+            squares[currentShotPosition].classList.add("boom")
+
+            setTimeout(() => squares[currentShotPosition].classList.remove("boom"), 300)
+            clearInterval(gunShot)
+
+            const alienRemoved = alienInvaders.indexOf(currentShotPosition)
+            aliensRemoved.push(alienRemoved)
+            results++
+            resultDisplay.innerHTML = results
+        }
+    }
+    gunShot = setInterval(moveShooter, 100)
+}
+
+

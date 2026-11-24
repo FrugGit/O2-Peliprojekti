@@ -1,6 +1,8 @@
 #game-container {
   border: 2px solid #7a5353;
   line-height: 0;
+  width: 800px;
+  height: 600px;
 }
 
 #game-canvas {
