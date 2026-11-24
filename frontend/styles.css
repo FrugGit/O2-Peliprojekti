@@ -1,6 +1,8 @@
 #game-container {
   border: 2px solid #7a5353;
   line-height: 0;
+  width: 800px;
+  height: 600px;
 }
 
 #grid {
@@ -24,6 +26,31 @@
 #game-player {
   width: 10px;
   height: 10px;
+}
+
+grid {
+  width: 800px;
+  height: 600px;
+  background-color: khaki;
+  display: flex;
+	flex-wrap: wrap;
+}
+
+/* peliin liittyen, yhden gridin palikan koko: */
+.grid div {
+	width: 40px;
+	height: 40px;
+}
+
+/* pelaaja: */
+
+.shooter {
+	background-color:darkgreen ;
+}
+
+/* datakeskus:*/
+.datacenter {
+  background-color: crimson;
 }
 
 /* Navigatio keskellä */
