@@ -4,6 +4,8 @@ const removedDataCenters = []
 let gameOver = false
 let dataCenterSpeed = 1.6
 let currentPlayerPosition = 280
+let isGoingRight = true
+let currentShooterIndex = 202
 
 const createGridOn = (parentID) => {
   const parentElement = document.getElementById(parentID);
@@ -27,11 +29,13 @@ for (let i = 0; i < gridWidth * gridHeight; i++) {
 const squares = Array.from(document.querySelectorAll(".grid div"))
 
 const dataCenters = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-    15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+    40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59
 ]
 
-function draw() {
+// luo datacenterin ruudun sisään
+function insertDataCenter() {
     for (let i = 0; i < dataCenters.length; i++) {
         if (!removedDataCenters.includes(i)) { // voi muuttaa ehkä if (i in removedDataCenters)
             squares[dataCenters[i]].classList.add("datacenter")
@@ -39,7 +43,7 @@ function draw() {
     }
 }
 
-draw()
+insertDataCenter()
 
 // poistaa datacenterin omasta ruudustaan jotta se voi joko siirtyä seuraavaan tai pois pelistä
 function remove() {
@@ -53,18 +57,19 @@ const movePlayer = () => {
     squares[currentPlayerPosition].classList.remove("shooter")
     switch (e.key) {
         case "ArrowLeft":
-            if (currentPlayerPosition % width !== 0) currentPlayerPosition -= 1
+            if (currentPlayerPosition % gridWidth !== 0) currentPlayerPosition -= 1
             break
         case "ArrowRight":
-            if (currentPlayerPosition % width < width - 1) currentPlayerPosition += 1
+            if (currentPlayerPosition % gridWidth < gridWidth - 1) currentPlayerPosition += 1
             break
     }
     squares[currentPlayerPosition].classList.add("shooter")
 
 };
 
-//kuinka usein ammus lähtee pelaajasta:
+// kuinka usein ammus lähtee pelaajasta:
 setInterval(shoot, 500)
+
 
 //ampumisen funktio
 function shoot() {
@@ -73,7 +78,7 @@ function shoot() {
 
     function moveShooter() {
         squares[currentShotPosition].classList.remove("bullet")
-        currentShotPosition -= 
+        currentShotPosition -= gridWidth
 
         if (currentShotPosition < 0) {
             clearInterval(gunShot)
@@ -82,16 +87,16 @@ function shoot() {
 
         squares[currentShotPosition].classList.add("bullet")
 
-        if (squares[currentShotPosition].classList.contains("invader")) {
+        if (squares[currentShotPosition].classList.contains("datacenter")) {
             squares[currentShotPosition].classList.remove("bullet")
-            squares[currentShotPosition].classList.remove("invader")
+            squares[currentShotPosition].classList.remove("datacenter")
             squares[currentShotPosition].classList.add("boom")
 
             setTimeout(() => squares[currentShotPosition].classList.remove("boom"), 300)
             clearInterval(gunShot)
 
-            const alienRemoved = alienInvaders.indexOf(currentShotPosition)
-            aliensRemoved.push(alienRemoved)
+            const alienRemoved = dataCenters.indexOf(currentShotPosition)
+            removedDataCenters.push(alienRemoved)
             results++
             resultDisplay.innerHTML = results
         }
@@ -99,4 +104,42 @@ function shoot() {
     gunShot = setInterval(moveShooter, 100)
 }
 
+function moveDataCenters() {
+    const leftEdge = dataCenters[0] % gridWidth === 0
+    const rightEdge = dataCenters[dataCenters.length - 1] % gridWidth === gridWidth - 1
+    remove()
 
+    if (rightEdge && isGoingRight) {
+        for (let i = 0; i < dataCenters.length; i++) {
+            dataCenters[i] += gridWidth + 1
+            direction = -1
+            isGoingRight = false
+        }
+    }
+
+    if (leftEdge && !isGoingRight) {
+        for (let i = 0; i < dataCenters.length; i++) {
+            dataCenters[i] += gridWidth - 1
+            direction = 1
+            isGoingRight = true
+        }
+    }
+
+    for (let i = 0; i < dataCenters.length; i++) {
+        dataCenters[i] += direction
+    }
+
+    insertDataCenter()
+
+    if (squares[currentShooterIndex].classList.contains("datacenter")) {
+        resultDisplay.innerHTML = "GAME OVER"
+        clearInterval(invadersId)
+    }
+
+    if (removedDataCenters.length === dataCenters.length) {
+        resultDisplay.innerHTML = "YOU WIN"
+        clearInterval(invadersId)
+    }
+}
+
+invadersId = setInterval(moveDataCenters, 600)
