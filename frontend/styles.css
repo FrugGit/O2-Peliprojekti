@@ -51,26 +51,24 @@
   height: 100%;
   background-color: lightpink;
   transition: 0.3s;
-  z-index: 1000;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 5px 0px 10px magenta
 }
-
-/* Sen napit */
 #s-nav a {
   background-color: pink;
   color: white;
   padding: 15px;
   margin: 10px;
-  width: 130px;
+  width: 150px;
   text-align: center;
   text-decoration: none;
   border: 2px solid #7a5353;
   border-radius: 5px;
   box-sizing: border-box;
+  box-shadow: 9px 5px 10px magenta
 }
 
 /* Nuoli */
@@ -78,15 +76,13 @@
   position: fixed;
   top: 50%;
   left: 5px;
-  transform: translateY(-50%);
+  font-size: 30px;
+  color: plum;
   background: none;
   border: none;
-  color: plum;
-  font-size: 30px;
   cursor: pointer;
   transition: 0.3s;
-  padding: 0;
-  z-index: 1001;
+  z-index: 1001; 
 }
 /* Kun se avautuu */
 #s-nav.open {

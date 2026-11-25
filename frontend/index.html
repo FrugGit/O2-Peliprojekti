@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="nav.js" defer></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
+    <header></header>
 
     <!-- Navigointivalikko -->
     <nav id="s-nav">
@@ -15,6 +18,10 @@
       <a href="gamepage.html">Game</a>
       <a href="contactpage.html">Contact</a>
     </nav>
+    <button id="arrow" onclick="openNav()">></button>
+    <div id="game-container"></div>
+    
+    <h1>Space Invaders</h1>
 
     <!-- Valikon avauspainike -->
   <button id="arrow" type="button" onclick="openNav()">☰</button>
