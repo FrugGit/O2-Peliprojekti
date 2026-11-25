@@ -5,7 +5,7 @@
   height: 600px;
 }
 
-#grid {
+.grid {
   display: flex;
   flex-wrap: wrap;
   background-color: khaki;
@@ -37,9 +37,14 @@
   background-color: darkgreen;
 }
 
+.bullet {
+  background-color: chartreuse;
+}
+
 /* datakeskus:*/
 .datacenter {
   background-color: crimson;
+  border-radius: 7px;
 }
 
 /* Navigatio keskellä */
