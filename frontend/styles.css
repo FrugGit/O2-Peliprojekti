@@ -1,11 +1,45 @@
 #game-container {
   border: 2px solid #7a5353;
   line-height: 0;
+  width: 800px;
+  height: 600px;
 }
 
-#game-canvas {
-    display: flex;
-    
+#grid {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: khaki;
+  width: 800px;
+  height: 600px;
+  border: solid black 2px;
+}
+
+#scoreboard {
+  position: absolute;
+  font-family: monospace;
+  font-size: 20px;
+  color: black;
+  background-color: transparent;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* peliin liittyen, yhden gridin palikan koko: */
+.grid div {
+  width: 40px;
+  height: 40px;
+}
+
+/* pelaaja: */
+
+.shooter {
+  background-color: darkgreen;
+}
+
+/* datakeskus:*/
+.datacenter {
+  background-color: crimson;
 }
 
 /* Navigatio keskellä */
@@ -36,6 +70,7 @@
   box-sizing: border-box;
   box-shadow: 9px 5px 10px magenta
 }
+
 /* Nuoli */
 #arrow {
   position: fixed;
@@ -84,6 +119,32 @@ header {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  margin-left: 200px;
+}
+
+#header-logo {
+  font-family: monospace, sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 10px 24px;
+  border: 2px solid #7a5353;
+  border-radius: 6px;
+  background-color: #7a5353;
+  box-shadow: 0 4px 0 #573939;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
+  user-select: none;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 200px;
+  width: calc(100% - 200px);
 }
 
 /* Etusivun sisältö */
@@ -96,7 +157,9 @@ header {
 }
 
 /* Otsikot */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: #7a5353;
 }
 
@@ -125,5 +188,56 @@ h1, h2, h3 {
 
   header {
     min-height: 90px;
+  }
+}
+
+/* Yhteystietosivu */
+.contact-content {
+  margin-top: 30px;
+  padding: 30px;
+  background-color: white;
+  border: 2px solid #7a5353;
+  border-radius: 5px;
+}
+
+/* Kuva ja yhteystiedot vierekkäin */
+.contact-container {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+/* Ryhmäkuvan alue */
+.contact-image {
+  flex: 1;
+  min-height: 250px;
+  background-color: lightpink;
+  border: 2px solid #7a5353;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Yhteystietojen alue */
+.contact-info {
+  flex: 1;
+}
+
+/* Ryhmäkuvan koko */
+.contact-image img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Yhteystietosivu mobiilissa */
+@media (max-width: 600px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-content {
+    padding: 15px;
   }
 }
