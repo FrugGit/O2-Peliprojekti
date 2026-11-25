@@ -3,9 +3,9 @@ const gridHeight = 15
 const removedDataCenters = []
 let gameOver = false
 let dataCenterSpeed = 1.6
-let currentPlayerPosition = 280
+let currentPlayerPosition = 290
 let isGoingRight = true
-let currentShooterIndex = 202
+let dataCenterID
 
 const createGridOn = (parentID) => {
   const parentElement = document.getElementById(parentID);
@@ -52,10 +52,11 @@ function remove() {
     }
 }
 
-const movePlayer = () => {
+const movePlayer = (event) => {
   // nuolinäppäinten painallusten eventit täällä
+  console.log("event happening", event)
     squares[currentPlayerPosition].classList.remove("shooter")
-    switch (e.key) {
+    switch (event.key) {
         case "ArrowLeft":
             if (currentPlayerPosition % gridWidth !== 0) currentPlayerPosition -= 1
             break
@@ -67,8 +68,10 @@ const movePlayer = () => {
 
 };
 
+document.addEventListener("keydown", movePlayer)
+
 // kuinka usein ammus lähtee pelaajasta:
-setInterval(shoot, 500)
+setInterval(shoot, 700)
 
 
 //ampumisen funktio
@@ -97,8 +100,6 @@ function shoot() {
 
             const alienRemoved = dataCenters.indexOf(currentShotPosition)
             removedDataCenters.push(alienRemoved)
-            results++
-            resultDisplay.innerHTML = results
         }
     }
     gunShot = setInterval(moveShooter, 100)
@@ -131,15 +132,13 @@ function moveDataCenters() {
 
     insertDataCenter()
 
-    if (squares[currentShooterIndex].classList.contains("datacenter")) {
-        resultDisplay.innerHTML = "GAME OVER"
-        clearInterval(invadersId)
+    if (squares[currentp].classList.contains("datacenter")) {
+        clearInterval(dataCenterID)
     }
 
     if (removedDataCenters.length === dataCenters.length) {
-        resultDisplay.innerHTML = "YOU WIN"
-        clearInterval(invadersId)
+        clearInterval(dataCenterID)
     }
 }
 
-invadersId = setInterval(moveDataCenters, 600)
+dataCenterID = setInterval(moveDataCenters, 600)

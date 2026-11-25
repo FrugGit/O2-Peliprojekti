@@ -8,7 +8,7 @@
 .grid {
   display: flex;
   flex-wrap: wrap;
-  background-color: khaki;
+  background: url(./assets/backgroundpicture.png);
   width: 800px;
   height: 600px;
   border: solid black 2px;
@@ -34,17 +34,22 @@
 /* pelaaja: */
 
 .shooter {
-  background-color: darkgreen;
+  background-color: rgb(6, 88, 6);
 }
 
 .bullet {
-  background-color: chartreuse;
+  background: url(./assets/flower_bullet.png)
 }
 
 /* datakeskus:*/
 .datacenter {
-  background-color: crimson;
-  border-radius: 7px;
+  background: url(./assets/data_center.png);
+}
+
+/* tälle voisi vielä tehdä oman png:n jos ehditään */
+.boom {
+  background-color: rgba(178, 34, 34, 0.495);
+
 }
 
 /* Navigatio keskellä */
